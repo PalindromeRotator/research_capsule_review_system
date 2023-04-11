@@ -1,0 +1,105 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+    </div>
+</div>
+<div class="container-fluid mt--7">
+    <div class="card shadow col-xl-8 order-xl-1" style="padding: 10px;">
+        <div class="col">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="form-control-label" for="input-email">Title</label>
+                        <input type="text" id="input-email" class="form-control form-control-alternative"
+                            value="{{capsuleData.title}}" [(ngModel)]="capsuleData.title">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="form-control-label" for="input-last-name">Section</label>
+                        <input type="text" id="input-full-name" class="form-control form-control-alternative"
+                            value="{{capsuleData.section}}" [(ngModel)]="capsuleData.section">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="form-control-label" for="input-email">Status</label>
+                        <input type="tex" id="input-email" class="form-control form-control-alternative"
+                            value="{{capsuleData.status}}" [(ngModel)]="capsuleData.status">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="form-control-label" for="input-last-name">File</label>
+                        <input type="text" id="input-full-name" class="form-control form-control-alternative"
+                            value="{{capsuleData.file}}" disabled>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="table-responsive">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <table class="table align-items-center table-flush">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let capsuleDataitem of currentReviewer">
+                                    <td>
+                                        <b>{{capsuleDataitem.name}}</b>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-icon btn-danger my-4">
+                                            <span class="btn-inner--icon"><i class="ni ni-basket"></i></span>
+                                            <span class="btn-inner--text"
+                                                (click)="RemoveReviewer(capsuleDataitem.uid)">Remove</span>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- style="width:50%;" -->
+                    <div class="col-lg-6">
+                        <table class="table align-items-center table-flush">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let reviewer of availableReviewer">
+                                    <td>
+                                        <b>{{reviewer.name}}</b>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-icon btn-success my-4">
+                                            <span class="btn-inner--icon"><i class="ni ni-fat-add"></i></span>
+                                            <span class="btn-inner--text" (click)="AddReviwer(reviewer.uid)">Add</span>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-lg-6">
+                    <button class="btn btn-success">Download File</button>
+                </div>
+                <div class="col-lg-6">
+                    <button class="btn btn-primary" (click)="saveCapsuleChanges()">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
