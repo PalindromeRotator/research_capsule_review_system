@@ -22,34 +22,36 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let faculty of facultyArray">
-                                <td>
-                                    <b>{{faculty.name}}</b>
-                                </td>
-                                <td>
-                                    {{faculty.email}}
-                                </td>
-                                <td>
-                                    {{faculty.user_type}}
-                                </td>
-                                <td *ngIf="faculty.is_verified; else elseBlock">
-                                    <div *ngIf="faculty.user_type === 'faculty'; else elseBlock">
-                                        <button type="button" class="btn btn-primary my-4"
-                                            (click)="assignAsReviewer(faculty.id)">Assign as Reviewer</button>
-                                    </div>
-                                    <ng-template #elseBlock>
-                                        <button type="button" class="btn btn-danger my-4"
-                                            (click)="removeAsReviewer(faculty.id)">Remove as Reviewer</button>
-                                    </ng-template>
-
-                                </td>
-                                <ng-template #elseBlock>
+                            <ng-container *ngFor="let faculty of facultyArray">
+                                <tr *ngIf="faculty.user_type !== 'admin'">
                                     <td>
-                                        <button type="button" class="btn btn-success my-4"
-                                            (click)="verifyFacultyAccount(faculty.id)">Verify faculty</button>
+                                        <b>{{faculty.name}}</b>
                                     </td>
-                                </ng-template>
-                            </tr>
+                                    <td>
+                                        {{faculty.email}}
+                                    </td>
+                                    <td>
+                                        {{faculty.user_type}}
+                                    </td>
+                                    <td *ngIf="faculty.is_verified; else elseBlock">
+                                        <div *ngIf="faculty.user_type === 'faculty';">
+                                            <button type="button" class="btn btn-primary my-4"
+                                                (click)="assignAsReviewer(faculty.id)">Assign as Reviewer</button>
+                                        </div>
+                                        <div *ngIf="faculty.user_type === 'reviewer';">
+                                            <button type="button" class="btn btn-danger my-4"
+                                                (click)="removeAsReviewer(faculty.id)">Remove as Reviewer</button>
+                                        </div>
+
+                                    </td>
+                                    <ng-template #elseBlock>
+                                        <td>
+                                            <button type="button" class="btn btn-success my-4"
+                                                (click)="verifyFacultyAccount(faculty.id)">Verify faculty</button>
+                                        </td>
+                                    </ng-template>
+                                </tr>
+                            </ng-container>
                         </tbody>
                     </table>
                 </div>

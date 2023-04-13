@@ -12,7 +12,7 @@ export class AccountsComponent implements OnInit {
   constructor(private router: Router, private usersService: UsersService) { }
 
   ngOnInit(): void {
-    this.usersService.getAllFaculty().subscribe(
+    this.usersService.getAll().subscribe(
       response => {
         this.facultyArray = response;
       },
@@ -38,6 +38,7 @@ export class AccountsComponent implements OnInit {
     this.usersService.update(id, { user_type: 'reviewer' }).subscribe(
       response => {
         console.log(response)
+        window.location.reload();
       },
       error => {
 

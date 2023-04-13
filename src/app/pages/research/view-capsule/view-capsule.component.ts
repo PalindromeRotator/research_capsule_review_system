@@ -41,12 +41,12 @@ export class ViewCapsuleComponent implements OnInit {
     this.capsuleData = JSON.parse(this.capsuleString)
     this.currentReviewer = this.capsuleData.reviewers !== null ? JSON.parse(this.capsuleData.reviewers) : []
     console.log(this.capsuleData)
-    this.getAllFaculty()
+    this.getAllReviewer()
   }
 
-  getAllFaculty(): void {
+  getAllReviewer(): void {
     this.availableReviewer = []
-    this.users.getAllFaculty().subscribe(
+    this.users.getAllReviewer().subscribe(
       response => {
         response.forEach(element => {
 
@@ -92,6 +92,9 @@ export class ViewCapsuleComponent implements OnInit {
     if (this.currentReviewer !== null) {
       if (this.currentReviewer.length > 0) {
         this.capsuleData.status = 'assigned'
+      }
+      else {
+        this.capsuleData.status = 'unassigned'
       }
     }
     else {

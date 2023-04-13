@@ -59,6 +59,27 @@ exports.findAllFaculty = (req, res) => {
         where: {
             [Op.or]: [
                 { user_type: "faculty" },
+            ]
+        }
+    })
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving tutorials."
+            });
+        });
+};
+
+exports.findAllReviewer = (req, res) => {
+    // const email = req.query.email;
+    // var condition = email ? { user_type: 'faculty' } : null;
+
+    Users.findAll({
+        where: {
+            [Op.or]: [
                 { user_type: "reviewer" }
             ]
         }

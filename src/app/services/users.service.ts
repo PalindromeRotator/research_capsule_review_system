@@ -20,6 +20,10 @@ export class UsersService {
     return this.http.get<Users[]>(`${baseUrl}/faculty`);
   }
 
+  getAllReviewer(): Observable<Users[]> {
+    return this.http.get<Users[]>(`${baseUrl}/reviewer`);
+  }
+
   get(data: any): Observable<Users> {
     return this.http.get(`${baseUrl}/${data.email}/${data.password}`);
   }

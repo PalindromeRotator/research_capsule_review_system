@@ -3,101 +3,167 @@
     </div>
 </div>
 <div class="container-fluid mt--7">
-    <div class="card shadow col-xl-8 order-xl-1" style="padding: 10px;">
-        <div class="col">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label class="form-control-label" for="input-email">Title</label>
-                        <input type="text" id="input-email" class="form-control form-control-alternative"
-                            value="{{capsuleData.title}}" [(ngModel)]="capsuleData.title">
+    <div class="row">
+        <div class="col-xl-3 order-xl-2 mb-5 mb-xl-0">
+            <div class="card card-profile shadow" style="height: 55vh; padding: 10px;">
+                <div class="card-header bg-white border-0">
+                    <div class="row align-items-center">
+                        <div class="col-8">
+                            <h3 class="mb-0">Comments</h3>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label class="form-control-label" for="input-last-name">Section</label>
-                        <input type="text" id="input-full-name" class="form-control form-control-alternative"
-                            value="{{capsuleData.section}}" [(ngModel)]="capsuleData.section">
+                <div class="card-body">
+                    <form>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                            placeholder="Write your comment here ..."></textarea>
+                    </form>
+                    <br>
+                    <button class="btn btn-primary">Send</button>
+                    <hr>
+                    <div style="overflow-y: auto; height: 50%;">
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-sm" style="text-align: left;">
+                                <span style="margin:auto; font-size: 12px;"><b>Reviewer Name</b></span>
+                                <p style="margin:auto; font-size: 12px;">One of three columns ne of three columns ne of
+                                    three columns ne of three columns</p>
+                                <p style="margin:auto; font-size: 12px;"><i> Date and time</i></p>
+                            </div>
+                        </div>
+                        <!-- <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-sm" style="text-align: left;">
+                                <span style="margin:auto; font-size: 12px;"><b>Reviewer Name</b></span>
+                                <p style="margin:auto; font-size: 12px;">One of three columns ne of three columns ne of
+                                    three columns ne of three columns</p>
+                                <p style="margin:auto; font-size: 12px;"><i> Date and time</i></p>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-sm" style="text-align: left;">
+                                <span style="margin:auto; font-size: 12px;"><b>Reviewer Name</b></span>
+                                <p style="margin:auto; font-size: 12px;">One of three columns ne of three columns ne of
+                                    three columns ne of three columns</p>
+                                <p style="margin:auto; font-size: 12px;"><i> Date and time</i></p>
+                            </div>
+                        </div> -->
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label class="form-control-label" for="input-email">Status</label>
-                        <input type="tex" id="input-email" class="form-control form-control-alternative"
-                            value="{{capsuleData.status}}" [(ngModel)]="capsuleData.status">
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label class="form-control-label" for="input-last-name">File</label>
-                        <input type="text" id="input-full-name" class="form-control form-control-alternative"
-                            value="{{capsuleData.file}}" disabled>
-                    </div>
-                </div>
-            </div>
-            <br>
-            <div class="table-responsive">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <table class="table align-items-center table-flush">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let capsuleDataitem of currentReviewer">
-                                    <td>
-                                        <b>{{capsuleDataitem.name}}</b>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-icon btn-danger my-4">
-                                            <span class="btn-inner--icon"><i class="ni ni-basket"></i></span>
-                                            <span class="btn-inner--text"
-                                                (click)="RemoveReviewer(capsuleDataitem.uid)">Remove</span>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- style="width:50%;" -->
-                    <div class="col-lg-6">
-                        <table class="table align-items-center table-flush">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let reviewer of availableReviewer">
-                                    <td>
-                                        <b>{{reviewer.name}}</b>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-icon btn-success my-4">
-                                            <span class="btn-inner--icon"><i class="ni ni-fat-add"></i></span>
-                                            <span class="btn-inner--text" (click)="AddReviwer(reviewer.uid)">Add</span>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
 
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-lg-6">
-                    <button class="btn btn-success">Download File</button>
                 </div>
-                <div class="col-lg-6">
-                    <button class="btn btn-primary" (click)="saveCapsuleChanges()">Save Changes</button>
+            </div>
+        </div>
+        <div class="col-xl-9 order-xl-1">
+            <div class="card shadow" style="padding: 10px;">
+                <div class="col">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-email">Title</label>
+                                <input type="text" id="input-email" class="form-control form-control-alternative"
+                                    value="{{capsuleData.title}}" [(ngModel)]="capsuleData.title">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-last-name">Section</label>
+                                <input type="text" id="input-full-name" class="form-control form-control-alternative"
+                                    value="{{capsuleData.section}}" [(ngModel)]="capsuleData.section">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-email">Status</label>
+                                <input type="tex" id="input-email" class="form-control form-control-alternative"
+                                    value="{{capsuleData.status}}" [(ngModel)]="capsuleData.status">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-last-name">File</label>
+                                <input type="text" id="input-full-name" class="form-control form-control-alternative"
+                                    value="{{capsuleData.file}}" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <br>`
+                    <div class="table-responsive">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <table class="table align-items-center table-flush">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let capsuleDataitem of currentReviewer">
+                                            <td>
+                                                <b>{{capsuleDataitem.name}}</b>
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-icon btn-danger my-4">
+                                                    <span class="btn-inner--icon"><i class="ni ni-basket"></i></span>
+                                                    <span class="btn-inner--text"
+                                                        (click)="RemoveReviewer(capsuleDataitem.uid)">Remove</span>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- style="width:50%;" -->
+                            <div class="col-lg-6">
+                                <table class="table align-items-center table-flush">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let reviewer of availableReviewer">
+                                            <td>
+                                                <b>{{reviewer.name}}</b>
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-icon btn-success my-4">
+                                                    <span class="btn-inner--icon"><i class="ni ni-fat-add"></i></span>
+                                                    <span class="btn-inner--text"
+                                                        (click)="AddReviwer(reviewer.uid)">Add</span>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <button class="btn btn-success">Download File</button>
+                        </div>
+                        <div class="col">
+                            <button class="btn btn-primary" (click)="saveCapsuleChanges()">Save Changes</button>
+                        </div>
+                        <div class="col">
+                            <button class="btn btn-danger">Return File</button>
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    <input type="number" class="form-control form-control-alternative">
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-secondary">Input
+                                        Grade</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
