@@ -1,9 +1,8 @@
 module.exports = {
-    HOST: "TIDB_HOST",
-    port: "TIDB_PORT",
-    USER: "TIDB_USER",
-    PASSWORD: "TIDB_PASSWORD",
-    DB: "research_capsule_evaluation_system",
+    HOST: process.env.DB_HOST,
+    USER: process.env.DB_USERNAME,
+    PASSWORD: process.env.DB_PASSWORD,
+    DB: process.env.DB_DBNAME,
     dialect: "mysql",
     pool: {
         max: 5,
