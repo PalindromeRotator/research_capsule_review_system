@@ -1,7 +1,8 @@
 module.exports = {
-    HOST: "localhost",
-    USER: "root",
-    PASSWORD: "",
+    HOST: "TIDB_HOST",
+    port: "TIDB_PORT",
+    USER: "TIDB_USER",
+    PASSWORD: "TIDB_PASSWORD",
     DB: "research_capsule_evaluation_system",
     dialect: "mysql",
     pool: {
