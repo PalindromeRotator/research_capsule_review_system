@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Capsules } from '../models/capsules';
 
-const baseUrl = 'http://localhost:8080/api/capsules';
+const baseUrl = 'https://research-capsule-review-system.vercel.app/api/capsules';
 
 @Injectable({
   providedIn: 'root'

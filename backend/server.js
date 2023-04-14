@@ -29,6 +29,7 @@ db.sequelize.sync()
 // simple route
 app.get("/", (req, res) => {
     res.json({ message: "Welcome to bezkoder application." });
+    res.send("Express on js");
 });
 require("./app/routes/users.routes")(app);
 require("./app/routes/capsules.routes")(app);
