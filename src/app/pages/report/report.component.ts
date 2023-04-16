@@ -12,4 +12,12 @@ export class ReportComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
+  findFilteredDate(): void {
+    const myDate = new Date('2023-04-16T00:00:00Z');
+    const epochTime = myDate.getTime();
+    console.log('Epoch time:', epochTime);
+  }
+
+
 }

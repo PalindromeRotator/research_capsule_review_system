@@ -23,7 +23,7 @@ export const ROUTES_ADMIN: RouteInfo[] = [
   { path: '/user-profile', title: 'User profile', icon: 'ni-single-02 text-primary', class: '' },
   { path: '/accounts', title: 'Accounts List', icon: 'ni-circle-08 text-primary', class: '' },
   { path: '/research', title: 'Research Capsules', icon: 'ni-books text-primary', class: '' },
-  { path: '/report', title: 'Report', icon: 'ni-planet text-blue', class: '' },
+  { path: '/report', title: 'Report', icon: 'ni-single-copy-04 text-blue', class: '' },
   { path: '/icons', title: 'Icons', icon: 'ni-planet text-blue', class: '' },
   // { path: '/maps', title: 'Maps',  icon:'ni-pin-3 text-orange', class: '' },
   // { path: '/login', title: 'Login',  icon:'ni-key-25 text-info', class: '' },

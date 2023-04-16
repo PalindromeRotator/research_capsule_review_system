@@ -16,18 +16,18 @@
                 <div class="card-body">
                     <form>
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-                            placeholder="Write your comment here ..."></textarea>
+                            placeholder="Write your comment here ..." [(ngModel)]="commentValue"
+                            value="{{commentValue}}"></textarea>
                     </form>
                     <br>
-                    <button class="btn btn-primary">Send</button>
+                    <button class="btn btn-primary" (click)="addCommment()">Send</button>
                     <hr>
                     <div style="overflow-y: auto; height: 50%;">
-                        <div class="row" style="margin-bottom: 10px;">
+                        <div class="row" style="margin-bottom: 10px;" *ngFor="let comment of comments">
                             <div class="col-sm" style="text-align: left;">
-                                <span style="margin:auto; font-size: 12px;"><b>Reviewer Name</b></span>
-                                <p style="margin:auto; font-size: 12px;">One of three columns ne of three columns ne of
-                                    three columns ne of three columns</p>
-                                <p style="margin:auto; font-size: 12px;"><i> Date and time</i></p>
+                                <span style="margin:auto; font-size: 12px;"><b>{{comment.name}}</b></span>
+                                <p style="margin:auto; font-size: 12px;">{{comment.comment}}</p>
+                                <p style="margin:auto; font-size: 12px;"><i> {{comment.date}}</i></p>
                             </div>
                         </div>
                         <!-- <div class="row" style="margin-bottom: 10px;">
@@ -144,16 +144,17 @@
                     <br>
                     <div class="row">
                         <div class="col">
-                            <button class="btn btn-success">Download File</button>
+                            <button class="btn btn-secondary" (click)="downloadFile()">Download File</button>
                         </div>
                         <div class="col">
                             <button class="btn btn-primary" (click)="saveCapsuleChanges()">Save Changes</button>
                         </div>
                         <div class="col">
-                            <button class="btn btn-danger">Return File</button>
+                            <button class="btn btn-danger" (click)="returnFile()">Return File</button>
                         </div>
                         <div class="col">
-                            <div class="row">
+                            <button class="btn btn-success" (click)="markAsComplete()">Mark as complete</button>
+                            <!-- <div class="row">
                                 <div class="col">
                                     <input type="number" class="form-control form-control-alternative">
                                 </div>
@@ -161,7 +162,7 @@
                                     <button class="btn btn-secondary">Input
                                         Grade</button>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>

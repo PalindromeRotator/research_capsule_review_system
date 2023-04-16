@@ -14,16 +14,35 @@ export class AddCapsuleComponent implements OnInit {
     uid_owner: localStorage.getItem('uid'),
     name_owner: localStorage.getItem('name'),
     reviewers: '',
-    status: 'unassigned',
+    status: 'Unassigned',
     file: '',
+    blob_file: null,
   }
   constructor(private router: Router, private capsulesService: CapsulesService) { }
 
   ngOnInit(): void {
   }
   onFileSelected(event): void {
-    const selectedFile = event.target.files[0];
-    this.capsuleData.file = selectedFile.name;
+    // const selectedFile = <File>event.target.files[0];
+    let blob = new Blob(event.target.files, { type: event.target.files[0].type });
+    let url = window.URL.createObjectURL(blob);
+    this.capsuleData.file = event.target.files[0].name
+    this.capsuleData.blob_file
+
+    // if (selectedFile.type === 'application/pdf') {
+    //   const fileReader = new FileReader();
+    //   fileReader.readAsArrayBuffer(selectedFile);
+
+    //   fileReader.onload = () => {
+    //     const pdfBlob = new Blob([fileReader.result], { type: 'application/pdf' });
+    //     console.log('PDF Blob:', pdfBlob);
+    //     this.capsuleData.file = selectedFile.name
+    //     this.capsuleData.blob_file = pdfBlob
+    //     console.log(pdfBlob)
+    //   };
+    // } else {
+    //   console.log('Invalid file type. Only PDF files are allowed.');
+    // }
   }
   addCapsule(): void {
     this.capsulesService.create(this.capsuleData).subscribe(

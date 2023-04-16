@@ -20,6 +20,12 @@ module.exports = (sequelize, Sequelize) => {
         },
         reviewers: {
             type: Sequelize.STRING
+        },
+        comments: {
+            type: Sequelize.STRING
+        },
+        blob_file: {
+            type: Sequelize.STRING
         }
     });
 

@@ -27,6 +27,7 @@ export class ResearchComponent implements OnInit {
     this.CapsulesService.getAll().subscribe(
       response => {
         this.researchArray = response;
+        console.log(response)
       },
       error => {
 
@@ -34,7 +35,7 @@ export class ResearchComponent implements OnInit {
     )
   }
 
-  viewCapsule(id: string, title: string, section: string, status: string, file: string, uid_owner: string, reviewers: Array<string>) {
+  viewCapsule(id: string, title: string, section: string, status: string, file: string, uid_owner: string, reviewers: Array<string>, comments: Array<string>, blob_file: Blob) {
     const stringifyVar = JSON.stringify({
       id: id,
       uid_owner: uid_owner,
@@ -42,7 +43,9 @@ export class ResearchComponent implements OnInit {
       status: status,
       section: section,
       file: file,
-      reviewers: reviewers
+      reviewers: reviewers,
+      comments: comments,
+      blob_file: blob_file,
     })
     this.router.navigate(['/research/view-capsule/', stringifyVar])
   }

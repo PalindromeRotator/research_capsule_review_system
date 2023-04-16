@@ -3,7 +3,7 @@ const cors = require("cors");
 
 const app = express();
 var corsOptions = {
-    origin: "https://research-capsule-review-system.vercel.app/"
+    origin: process.env.ORIGIN || "http://localhost:8081"
 };
 
 app.use(cors(corsOptions));

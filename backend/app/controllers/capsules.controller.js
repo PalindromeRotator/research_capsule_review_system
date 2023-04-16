@@ -20,6 +20,7 @@ exports.create = (req, res) => {
         reviewers: req.body.reviewer,
         status: req.body.status,
         file: req.body.file,
+        blob_file: req.body.file,
     };
 
     // Save Tutorial in the database
@@ -45,6 +46,25 @@ exports.findAll = (req, res) => {
             res.status(500).send({
                 message:
                     err.message || "Some error occurred while retrieving tutorials."
+            });
+        });
+};
+
+exports.findOne = (req, res) => {
+    const id = req.params.id;
+    Capsules.findOne({ where: { id: id } })
+        .then(data => {
+            if (data) {
+                res.send(data);
+            } else {
+                res.status(404).send({
+                    message: `Cannot find capsules with id=${id}.`
+                });
+            }
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: "Error retrieving capsules with id=" + id
             });
         });
 };

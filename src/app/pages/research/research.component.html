@@ -53,8 +53,14 @@
                                 </td> -->
                                 <td>
                                     <button type="button" class="btn btn-success my-4"
-                                        (click)="viewCapsule(research.id,research.title, research.section, research.status, research.file,research.uid_owner, research.reviewers)">View
+                                        *ngIf="research.status === 'Assigned'"
+                                        (click)="viewCapsule(research.id,research.title, research.section, research.status, research.file,research.uid_owner, research.reviewers, research.comments, research.blob_file)">View
                                         Capsule</button>
+                                    <button type="button" class="btn btn-success my-4"
+                                        *ngIf="research.status === 'Unassigned'"
+                                        (click)="viewCapsule(research.id,research.title, research.section, research.status, research.file,research.uid_owner, research.reviewers, research.comments,research.blob_file)">View
+                                        Capsule</button>
+
                                 </td>
                             </tr>
                         </tbody>

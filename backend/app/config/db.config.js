@@ -1,8 +1,8 @@
 module.exports = {
-    HOST: process.env.DB_HOST,
-    USER: process.env.DB_USERNAME,
-    PASSWORD: process.env.DB_PASSWORD,
-    DB: process.env.DB_DBNAME,
+    HOST: process.env.DB_HOST || 'localhost',
+    USER: process.env.DB_USERNAME || 'root',
+    PASSWORD: process.env.DB_PASSWORD || '',
+    DB: process.env.DB_DBNAME || 'research_capsule_evaluation_system',
     dialect: "mysql",
     pool: {
         max: 5,
