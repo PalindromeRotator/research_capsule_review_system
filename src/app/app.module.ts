@@ -17,6 +17,7 @@ import { ResearchComponent } from './pages/research/research.component';
 import { ReportComponent } from './pages/report/report.component';
 import { ViewCapsuleComponent } from './pages/research/view-capsule/view-capsule.component';
 import { AddCapsuleComponent } from './pages/research/add-capsule/add-capsule.component';
+import { ContentManagementComponent } from './pages/content-management/content-management.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { AddCapsuleComponent } from './pages/research/add-capsule/add-capsule.co
     ResearchComponent,
     ReportComponent,
     ViewCapsuleComponent,
-    AddCapsuleComponent
+    AddCapsuleComponent,
+    ContentManagementComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -10,6 +10,7 @@ import { ResearchComponent } from 'src/app/pages/research/research.component';
 import { ReportComponent } from 'src/app/pages/report/report.component';
 import { ViewCapsuleComponent } from 'src/app/pages/research/view-capsule/view-capsule.component';
 import { AddCapsuleComponent } from 'src/app/pages/research/add-capsule/add-capsule.component';
+import { ContentManagementComponent } from 'src/app/pages/content-management/content-management.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard', component: DashboardComponent },
@@ -21,5 +22,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'icons', component: IconsComponent },
     { path: 'maps', component: MapsComponent },
     { path: 'research/view-capsule/:capsuleData', component: ViewCapsuleComponent },
-    { path: 'research/add-capsule', component: AddCapsuleComponent }
+    { path: 'research/add-capsule', component: AddCapsuleComponent },
+    { path: 'content-management', component: ContentManagementComponent }
 ];

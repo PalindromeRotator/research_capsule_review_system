@@ -25,6 +25,7 @@ export class ViewCapsuleComponent implements OnInit {
     reviewers: '',
     comments: '',
     blob_file: null,
+    grade: '',
   };
   currentReviewer: Array<reviewer> = [
     {
@@ -49,6 +50,9 @@ export class ViewCapsuleComponent implements OnInit {
 
   ]
   commentValue: string;
+
+  userType = localStorage.getItem('user_type')
+  uid = localStorage.getItem('uid')
   constructor(private route: ActivatedRoute, private users: UsersService, private capsules: CapsulesService, private router: Router, private http: HttpClient) { }
 
   ngOnInit(): void {
@@ -118,6 +122,9 @@ export class ViewCapsuleComponent implements OnInit {
       response => {
         alert('Success')
         this.router.navigate(['/research'])
+      },
+      error => {
+        console.log(error)
       }
     )
   }
@@ -163,11 +170,58 @@ export class ViewCapsuleComponent implements OnInit {
   downloadFile(): void {
     const url = URL.createObjectURL(new Blob([this.capsuleData.blob_file]));
     const link = document.createElement('a');
-    link.href = url;
     link.download = `${this.capsuleData.title}.pdf`;
+    link.href = url;
     link.click();
 
     console.log(this.capsuleData.blob_file)
+    console.log(url)
+  }
+
+  resubmitCapsule(): void {
+    this.capsuleData.status = 'Assigned'
+    this.capsules.update(this.capsuleData.id, this.capsuleData).subscribe(
+      response => {
+        this.router.navigate(['/research'])
+      }
+    )
+  }
+
+  updateGrade(): void {
+    if (this.capsuleData.grade) {
+      console.log(this.capsuleData.grade, this.capsuleData.grade !== '')
+      this.capsules.update(this.capsuleData.id, this.capsuleData).subscribe(
+        response => {
+          this.router.navigate(['/research'])
+        }
+      )
+    }
+    else {
+      alert('Cannot be empty')
+    }
+  }
+
+  onFileSelected(event): void {
+    // const selectedFile = <File>event.target.files[0];
+    // let blob = new Blob(event.target.files, { type: event.target.files[0].type });
+    // let url = window.URL.createObjectURL(blob);
+    // this.capsuleData.file = event.target.files[0].name
+    // this.capsuleData.blob_file = blob
+    console.log(event.target.files[0].type)
+    if (event.target.files[0].type === 'application/pdf') {
+      const fileReader = new FileReader();
+      fileReader.readAsArrayBuffer(event.target.files[0]);
+
+      fileReader.onload = () => {
+        const pdfBlob = new Blob([fileReader.result], { type: 'application/pdf' });
+        console.log('PDF Blob:', pdfBlob);
+        this.capsuleData.file = event.target.files[0].name
+        this.capsuleData.blob_file = pdfBlob
+        console.log(pdfBlob)
+      };
+    } else {
+      console.log('Invalid file type. Only PDF files are allowed.');
+    }
   }
 
 }

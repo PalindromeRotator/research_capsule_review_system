@@ -9,4 +9,6 @@ export class Capsules {
     reviewers: string;
     comments: string;
     blob_file: string;
+    grade: string;
+    createdAt: string;
 }

@@ -27,7 +27,7 @@ export class AddCapsuleComponent implements OnInit {
     let blob = new Blob(event.target.files, { type: event.target.files[0].type });
     let url = window.URL.createObjectURL(blob);
     this.capsuleData.file = event.target.files[0].name
-    this.capsuleData.blob_file
+    this.capsuleData.blob_file = blob
 
     // if (selectedFile.type === 'application/pdf') {
     //   const fileReader = new FileReader();

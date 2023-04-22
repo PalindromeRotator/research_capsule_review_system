@@ -19,4 +19,6 @@ import { RegisterComponent } from '../../pages/register/register.component';
     RegisterComponent
   ]
 })
-export class AuthLayoutModule { }
+export class AuthLayoutModule {
+
+}

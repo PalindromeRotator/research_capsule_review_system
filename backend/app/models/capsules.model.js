@@ -16,7 +16,7 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING
         },
         file: {
-            type: Sequelize.BLOB
+            type: Sequelize.STRING
         },
         reviewers: {
             type: Sequelize.STRING
@@ -25,6 +25,9 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING
         },
         blob_file: {
+            type: Sequelize.BLOB
+        },
+        grade: {
             type: Sequelize.STRING
         }
     });

@@ -75,7 +75,7 @@
                             <div class="form-group">
                                 <label class="form-control-label" for="input-email">Status</label>
                                 <input type="tex" id="input-email" class="form-control form-control-alternative"
-                                    value="{{capsuleData.status}}" [(ngModel)]="capsuleData.status">
+                                    value="{{capsuleData.status}}" [(ngModel)]="capsuleData.status" disabled>
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -83,6 +83,11 @@
                                 <label class="form-control-label" for="input-last-name">File</label>
                                 <input type="text" id="input-full-name" class="form-control form-control-alternative"
                                     value="{{capsuleData.file}}" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-email">Upload Capsule File</label>
+                                <input type="file" id="input-email" class="form-control form-control-alternative"
+                                    (change)="onFileSelected($event)" accept="application/pdf">
                             </div>
                         </div>
                     </div>
@@ -103,7 +108,8 @@
                                                 <b>{{capsuleDataitem.name}}</b>
                                             </td>
                                             <td>
-                                                <button type="button" class="btn btn-icon btn-danger my-4">
+                                                <button type="button" class="btn btn-icon btn-danger my-4"
+                                                    *ngIf="userType ==='admin'">
                                                     <span class="btn-inner--icon"><i class="ni ni-basket"></i></span>
                                                     <span class="btn-inner--text"
                                                         (click)="RemoveReviewer(capsuleDataitem.uid)">Remove</span>
@@ -114,7 +120,7 @@
                                 </table>
                             </div>
                             <!-- style="width:50%;" -->
-                            <div class="col-lg-6">
+                            <div class="col-lg-6" *ngIf="userType ==='admin'">
                                 <table class="table align-items-center table-flush">
                                     <thead class="thead-light">
                                         <tr>
@@ -150,10 +156,14 @@
                             <button class="btn btn-primary" (click)="saveCapsuleChanges()">Save Changes</button>
                         </div>
                         <div class="col">
-                            <button class="btn btn-danger" (click)="returnFile()">Return File</button>
+                            <button class="btn btn-danger" (click)="returnFile()"
+                                *ngIf="userType === 'reviewer' && capsuleData.status !=='Under Revision'">Return
+                                File</button>
                         </div>
                         <div class="col">
-                            <button class="btn btn-success" (click)="markAsComplete()">Mark as complete</button>
+                            <button class="btn btn-success" (click)="markAsComplete()"
+                                *ngIf="userType === 'reviewer' && uid !== capsuleData.uid_owner">Mark as
+                                complete</button>
                             <!-- <div class="row">
                                 <div class="col">
                                     <input type="number" class="form-control form-control-alternative">
@@ -164,7 +174,33 @@
                                 </div>
                             </div> -->
                         </div>
+                        <div class="col" *ngIf="userType === 'faculty' && capsuleData.status == 'Under Revision'">
+                            <button type="button" class="btn btn-primary" (click)="resubmitCapsule()">Resubmit</button>
+                        </div>
+                        <div class="col">
+                            <div class="row" *ngIf="userType ==='reviewer' && uid !== capsuleData.uid_owner">
+                                <div class="col">
+                                    <input type="text" id="input-email" class="form-control form-control-alternative"
+                                        placeholder="Input Grade" [(ngModel)]="capsuleData.grade"
+                                        value="{{capsuleData.grade}}">
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-success" (click)="updateGrade()">Input</button>
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="userType ==='admin'">
+                                <div class="col">
+                                    <p>Grade: </p>
+                                </div>
+                                <div class="col">
+                                    <p>{{capsuleData.grade}}</p>
+                                </div>
+
+                            </div>
+
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>

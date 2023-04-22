@@ -12,7 +12,7 @@
                     <h3 class="mb-0">Research Capsules</h3>
                     <br>
                     <br>
-                    <button class="btn btn-success" (click)="addCapsule()">Add Capsule</button>
+                    <!-- <button class="btn btn-success" (click)="addCapsule()">Add Capsule</button> -->
                 </div>
                 <div class="table-responsive">
                     <table class="table align-items-center table-flush">
@@ -98,12 +98,7 @@
                     <div class="card-header border-0">
                         <h3 class="mb-0">Research Capsules</h3>
                         <br>
-                        <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#myModal">Add
-                            Capsule
-                        </button>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                            Launch Modal
-                        </button>
+                        <button class="btn btn-success" (click)="addCapsule()">Add Capsule</button>
                     </div>
                     <div class="table-responsive">
                         <table class="table align-items-center table-flush">
@@ -118,26 +113,25 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let research of researchArray">
-                                    <td *ngIf="uid === research.uid_owner">
+                                    <td>
                                         <b>{{research.title}}</b>
                                     </td>
-                                    <td *ngIf="uid === research.uid_owner">
+                                    <td>
                                         {{research.section}}
                                     </td>
-                                    <td *ngIf="uid === research.uid_owner">
+                                    <td>
                                         {{research.status}}
                                     </td>
-                                    <td *ngIf="uid === research.uid_owner">
+                                    <td>
 
-                                        Sample
+                                        {{research.file}}
                                     </td>
-                                    <td *ngIf="research.status==='under_revision'">
-                                        <button type="button" class="btn btn-primary my-4"
-                                            (click)="approveCapsule(research.id)">Re-upload</button>
+                                    <td>
+                                        <button type="button" class="btn btn-success my-4"
+                                            *ngIf="research.status !== 'Completed'"
+                                            (click)="viewCapsule(research.id,research.title, research.section, research.status, research.file,research.uid_owner, research.reviewers, research.comments,research.blob_file, research.grade)">View
+                                            Capsule</button>
                                     </td>
-                                    <ng-template #elseBlock>
-
-                                    </ng-template>
                                 </tr>
                             </tbody>
                         </table>

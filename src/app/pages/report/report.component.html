@@ -18,7 +18,7 @@
                                     <span class="input-group-text"><i class="ni ni-calendar-grid-58">From</i></span>
                                 </div>
                                 <input class="form-control datepicker" placeholder="Select date" name="dp" ngbDatepicker
-                                    #d="ngbDatepicker" (click)="d.toggle()" type="text" />
+                                    #d="ngbDatepicker" (click)="d.toggle()" type="text" [(ngModel)]="from" />
                             </div>
                         </div>
                         <div class="col-sm">
@@ -27,25 +27,57 @@
                                     <span class="input-group-text"><i class="ni ni-calendar-grid-58">Into</i></span>
                                 </div>
                                 <input class="form-control datepicker" placeholder="Select date" name="dp" ngbDatepicker
-                                    #e="ngbDatepicker" (click)="e.toggle()" type="text" />
+                                    #e="ngbDatepicker" (click)="e.toggle()" type="text" [(ngModel)]="into " />
                             </div>
                         </div>
                         <div class="col-sm">
-                            <button class="btn btn-primary">Find</button>
+                            <button class="btn btn-primary" (click)="findFilteredDate()">Find</button>
                         </div>
+                        <div class="col-sm">
+                            <button type="button" class="btn btn-icon btn-success">
+                                <span class="btn-inner--icon"><i class="ni ni-single-copy-04"></i></span>
+                                <span class="btn-inner--text" (click)="exportexcel()">Download report</span>
+                            </button>
+                        </div>
+
                     </div>
                 </div>
                 <div class="table-responsive">
-                    <table class="table align-items-center table-flush">
+                    <table class="table align-items-center table-flush" id="excel-table">
                         <thead class="thead-light">
                             <tr>
                                 <th scope="col">Title</th>
                                 <th scope="col">Section</th>
-                                <th scope="col">Date</th>
+                                <th scope="col">Created At</th>
                                 <th scope="col">File</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Owner Name</th>
+                                <th scope="col">Blob File</th>
+                                <th scope="col">Grade</th>
+                                <!-- <th scope="col">Completed At</th> -->
+
                             </tr>
                         </thead>
                         <tbody>
+                            <tr *ngFor="let result of resultArray">
+                                <td>
+                                    <b>{{result.title}}</b>
+                                </td>
+                                <td>{{result.section}}</td>
+                                <td>{{result.createdAt}}</td>
+                                <td>{{result.file}}</td>
+                                <td>{{result.status}}</td>
+                                <td>{{result.name_owner}}</td>
+                                <td>
+                                    <button type="button" class="btn btn-icon btn-secondary">
+                                        <span class="btn-inner--icon"><i class="ni ni-single-copy-04"></i></span>
+                                        <span class="btn-inner--text"
+                                            (click)="downloadFile(result.blob_file, result.title)">Download
+                                            File</span>
+                                    </button>
+                                </td>
+                                <td>{{result.grade}}</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

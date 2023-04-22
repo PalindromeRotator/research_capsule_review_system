@@ -8,6 +8,8 @@ import {
   chartExample1,
   chartExample2
 } from "../../variables/charts";
+import { UsersService } from 'src/app/services/users.service';
+import { CapsulesService } from 'src/app/services/capsules.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,45 +18,42 @@ import {
 })
 export class DashboardComponent implements OnInit {
 
-  public datasets: any;
-  public data: any;
-  public salesChart;
-  public clicked: boolean = true;
-  public clicked1: boolean = false;
-
-  ngOnInit() {
-
-    this.datasets = [
-      [0, 20, 10, 30, 15, 40, 20, 60, 60],
-      [0, 20, 5, 25, 10, 30, 15, 40, 40]
-    ];
-    this.data = this.datasets[0];
-
-
-    var chartOrders = document.getElementById('chart-orders');
-
-    parseOptions(Chart, chartOptions());
-
-
-    var ordersChart = new Chart(chartOrders, {
-      type: 'bar',
-      options: chartExample2.options,
-      data: chartExample2.data
-    });
-
-    var chartSales = document.getElementById('chart-sales');
-
-    this.salesChart = new Chart(chartSales, {
-			type: 'line',
-			options: chartExample1.options,
-			data: chartExample1.data
-		});
+  dashboardData = {
+    capsules: 0,
+    users: 0,
+    faculty: 0,
+    reviewer: 0,
   }
 
+  constructor(private usersService: UsersService, private capsulesService: CapsulesService) { }
+  ngOnInit() {
+    this.getDashboardData();
+  }
 
-  public updateOptions() {
-    this.salesChart.data.datasets[0].data = this.data;
-    this.salesChart.update();
+  getDashboardData(): void {
+    this.capsulesService.getAll().subscribe(
+      response => {
+        this.dashboardData.capsules = response.length
+      }
+    )
+
+    this.usersService.getAll().subscribe(
+      response => {
+        this.dashboardData.users = response.length
+      }
+    )
+
+    this.usersService.getAllFaculty().subscribe(
+      response => {
+        this.dashboardData.faculty = response.length
+      }
+    )
+
+    this.usersService.getAllReviewer().subscribe(
+      response => {
+        this.dashboardData.reviewer = response.length
+      }
+    )
   }
 
 }

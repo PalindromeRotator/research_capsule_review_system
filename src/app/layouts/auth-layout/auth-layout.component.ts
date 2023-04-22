@@ -7,19 +7,26 @@ import { Router } from '@angular/router';
   styleUrls: ['./auth-layout.component.scss']
 })
 export class AuthLayoutComponent implements OnInit, OnDestroy {
+  logo = localStorage.getItem('content-image') ?? "assets/img/brand/favicon0.png"
   test: Date = new Date();
   public isCollapsed = true;
 
   constructor(private router: Router) { }
 
   ngOnInit() {
-    var html = document.getElementsByTagName("html")[0];
-    html.classList.add("auth-layout");
-    var body = document.getElementsByTagName("body")[0];
-    body.classList.add("bg-default");
-    this.router.events.subscribe((event) => {
-      this.isCollapsed = true;
-   });
+    if (localStorage.getItem('token')) {
+      this.router.navigate(['/dashboard'])
+    }
+    else {
+      var html = document.getElementsByTagName("html")[0];
+      html.classList.add("auth-layout");
+      var body = document.getElementsByTagName("body")[0];
+      body.classList.add("bg-default");
+      this.router.events.subscribe((event) => {
+        this.isCollapsed = true;
+      });
+    }
+
 
   }
   ngOnDestroy() {

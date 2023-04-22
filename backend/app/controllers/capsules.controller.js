@@ -20,7 +20,8 @@ exports.create = (req, res) => {
         reviewers: req.body.reviewer,
         status: req.body.status,
         file: req.body.file,
-        blob_file: req.body.file,
+        blob_file: req.body.blob_file,
+        grade: req.body.grade,
     };
 
     // Save Tutorial in the database
