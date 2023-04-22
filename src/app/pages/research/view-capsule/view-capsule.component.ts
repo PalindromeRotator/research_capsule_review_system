@@ -5,6 +5,7 @@ import { UsersService } from 'src/app/services/users.service';
 import { CapsulesService } from 'src/app/services/capsules.service';
 import { comments } from './comments';
 import { HttpClient } from '@angular/common/http';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-view-capsule',
@@ -120,8 +121,13 @@ export class ViewCapsuleComponent implements OnInit {
     }
     this.capsules.update(this.capsuleData.id, this.capsuleData).subscribe(
       response => {
-        alert('Success')
-        this.router.navigate(['/research'])
+        Swal.fire({
+          icon: 'success',
+          title: 'Done',
+          text: 'Successfully save a capsule changes',
+        }).then((result) => {
+          this.router.navigate(['research/'])
+        })
       },
       error => {
         console.log(error)
@@ -153,7 +159,13 @@ export class ViewCapsuleComponent implements OnInit {
     this.capsuleData.status = 'Completed'
     this.capsules.update(this.capsuleData.id, this.capsuleData).subscribe(
       response => {
-        this.router.navigate(['/research'])
+        Swal.fire({
+          icon: 'success',
+          title: 'Done',
+          text: 'Successfully marked a capsule as completed',
+        }).then((result) => {
+          this.router.navigate(['research/'])
+        })
       }
     )
   }
@@ -162,7 +174,13 @@ export class ViewCapsuleComponent implements OnInit {
     this.capsuleData.status = 'Under Revision'
     this.capsules.update(this.capsuleData.id, this.capsuleData).subscribe(
       response => {
-        this.router.navigate(['/research'])
+        Swal.fire({
+          icon: 'success',
+          title: 'Done',
+          text: 'Successfully return a capsule',
+        }).then((result) => {
+          this.router.navigate(['research/'])
+        })
       }
     )
   }
@@ -182,7 +200,13 @@ export class ViewCapsuleComponent implements OnInit {
     this.capsuleData.status = 'Assigned'
     this.capsules.update(this.capsuleData.id, this.capsuleData).subscribe(
       response => {
-        this.router.navigate(['/research'])
+        Swal.fire({
+          icon: 'success',
+          title: 'Done',
+          text: 'Successfully resubmit a capsule',
+        }).then((result) => {
+          this.router.navigate(['research/'])
+        })
       }
     )
   }
@@ -192,12 +216,22 @@ export class ViewCapsuleComponent implements OnInit {
       console.log(this.capsuleData.grade, this.capsuleData.grade !== '')
       this.capsules.update(this.capsuleData.id, this.capsuleData).subscribe(
         response => {
-          this.router.navigate(['/research'])
+          Swal.fire({
+            icon: 'success',
+            title: 'Done',
+            text: 'Successfully updated a capsule',
+          }).then((result) => {
+            this.router.navigate(['research/'])
+          })
         }
       )
     }
     else {
-      alert('Cannot be empty')
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Cannot be empty',
+      })
     }
   }
 

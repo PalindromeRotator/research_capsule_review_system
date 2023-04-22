@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user-profile',
@@ -39,7 +40,11 @@ export class UserProfileComponent implements OnInit {
     this.usersService.update(localStorage.getItem('uid'), this.userData).subscribe(
       response => {
         console.log(response)
-        alert('Successfully updated')
+        Swal.fire({
+          icon: 'success',
+          title: 'Done',
+          text: 'Successfully updated!',
+        })
       },
       error => {
         console.log(error)

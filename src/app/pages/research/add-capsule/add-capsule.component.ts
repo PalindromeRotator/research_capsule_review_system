@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CapsulesService } from 'src/app/services/capsules.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-capsule',
@@ -47,8 +48,14 @@ export class AddCapsuleComponent implements OnInit {
   addCapsule(): void {
     this.capsulesService.create(this.capsuleData).subscribe(
       response => {
-        alert('Success')
-        this.router.navigate(['research/'])
+        Swal.fire({
+          icon: 'success',
+          title: 'Done',
+          text: 'Successfully add a capsule',
+        }).then((result) => {
+          this.router.navigate(['research/'])
+        })
+
       }
 
     )
